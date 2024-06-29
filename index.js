@@ -9,6 +9,7 @@ const app = express();
 const mongoose = require("mongoose");
 const port = 3000;
 const bodyParser = require("body-parser");
+const router = express.Router();
 
 app.use(cors()); // This will allow all origins
 
@@ -20,7 +21,9 @@ app.use("/api/user", user);
 app.use("/register", register);
 app.use("/api/post", post);
 app.use("/login", login);
-
+app.get("/", (req, res) => {
+  res.send("Welcome Home");
+});
 const db = process.env.MONGODB_URI;
 mongoose
   .connect(db)
